@@ -1,0 +1,39 @@
+							
+    <HTML>
+    <HEAD>               
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script>
+                                        function formatNumber (num) {
+                                       num = num.toFixed(0);
+                                       return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                                               } 
+                                               
+                                        function loadMonitoringData(){
+
+                                        var $monitoringdata = $('#monitoring-data'),
+                                            apiKey='', // Insert API key here
+                                          
+                                             requestURL='https://api.enphaseenergy.com/api/v2/systems/27727/summary?callback=?';           
+                                        var performancedata;
+
+                                        
+                                        $.getJSON(requestURL, {
+                                        
+                                        'key':apiKey,
+                                        
+                                        }, function (data) {
+                                         console.log(data);
+                                         
+                                         performancedata = "<b>Current Power:</b> " + formatNumber(data.current_power) + " W <br/>";
+                                         performancedata += "<b>Produced Today:</b> " + formatNumber(data.energy_today/1000) + " kWh <br/>";
+                                         performancedata += "<b>Lifetime Production:</b> " + formatNumber(data.energy_lifetime/1000000) + " MWh <br/>";                                  performancedata += "<a href='http://enphase.com' target='_blank'>Powered by Enphase Energy</a>";
+                                         $monitoringdata.html(performancedata);	
+                                        });
+    			}
+                                        window.onload = loadMonitoringData;
+    			</script>
+		 </HEAD>
+     <BODY>
+     <div id="monitoring-data"> </div>
+     </BODY>		
+     </HTML>
