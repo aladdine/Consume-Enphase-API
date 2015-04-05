@@ -27,6 +27,7 @@
                                          performancedata = "<b>Current Power:</b> " + formatNumber(data.current_power) + " W <br/>";
                                          performancedata += "<b>Produced Today:</b> " + formatNumber(data.energy_today/1000) + " kWh <br/>";
                                          performancedata += "<b>Lifetime Production:</b> " + formatNumber(data.energy_lifetime/1000000) + " MWh <br/>";                                  performancedata += "<a href='http://enphase.com' target='_blank'>Powered by Enphase Energy</a>";
+                                         performancedata += "<b>Status:</b> " + data.status + " <br/>"; 
                                          $monitoringdata.html(performancedata);	
                                         });
     			}
