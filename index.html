@@ -13,7 +13,7 @@
       let performancedata = 'Loading ...';
       $.getJSON(requestURL, {
         'key':apiKey,
-      }, function (data) {
+      }, (data) => {
         console.log(`Enphase data: ${data}`);
         performancedata = "<b>Current Power:</b> " + 
           formatNumber(data.current_power) + " W <br/>";
@@ -31,6 +31,6 @@
   </script>
 </head>
 <body>
-  <div id="monitoring-data"> </div>
+  <div id="monitoring-data"></div>
 </body>		
 </html>
